@@ -35,3 +35,4 @@ console.log('SPACE (speed0fLight):', speed0fLight) // 299 792 458 m/s
 console.log('SPACE (gravity): ', gravity) // 0
 console.log('SPACE (temperature): ', temperature) // ERROR
 console.log('SPACE (houseSize): ', houseSize) // ERROR
+
