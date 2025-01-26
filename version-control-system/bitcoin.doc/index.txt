@@ -1,0 +1,21 @@
+
+What is Bitcoin?
+
+Bitcoin is a cryptocurrency, a virtual currency designed to act as money and a form of payment outside
+the control of any one person, group, or entity, thus removing the need for third-party involvement in
+financial transactions. It is rewarded to blockchain miners for verifying transactions and
+can be purchased on several exchanges.
+
+Bitcoin's Blockchain Technology
+
+Cryptocurrencies are part of a blockchain and the network required to power it. 
+A blockchain is a distributed ledger, a shared database that stores data. 
+Encryption methods secure data within the blockchain. 
+When a transaction takes place on the blockchain, information from the previous block is copied to a new block with the new data, 
+encrypted, and validators verify the transaction—called miners—in the network. 
+When a transaction is verified, a new block is opened, and a Bitcoin is created and given as a reward to the miner(s) 
+who verified the data within the block—they are then free to use it, hold it, or sell it.
+
+Bitcoin uses the SHA-256 hashing algorithm to encrypt the data stored in the blocks on the blockchain. 
+Simply put, transaction data stored in a block is encrypted into a 256-bit hexadecimal number. 
+That number contains all the transaction data and information linked to the blocks before that block.
