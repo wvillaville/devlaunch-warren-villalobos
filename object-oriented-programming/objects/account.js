@@ -31,7 +31,7 @@ function createAccount(id, holderName, balance=0) {
     this.id = id;
     this.holderName = holderName;
     this.balance = balance;
-  
+
     this.deposit = (amount) =>{
       this.balance += amount;
       console.log(`Depósito exitoso. Nuevo saldo: ${this.balance}`);
