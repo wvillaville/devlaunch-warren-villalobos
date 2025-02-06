@@ -4,6 +4,7 @@
   "description": "Full Stack Dev Lab",
   "main": "index.js",
   "dependencies": {
+    "@types/prompt-sync": "^4.2.3",
     "ansi-regex": "^4.1.1",
     "prompt-sync": "^4.2.0",
     "strip-ansi": "^5.2.0"
@@ -21,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/wvillaville/devlaunch-warren-villalobos/issues"
   },
-  "homepage": "https://github.com/wvillaville/devlaunch-warren-villalobos#readme"
+  "homepage": "https://github.com/wvillaville/devlaunch-warren-villalobos#readme",
+  "devDependencies": {
+    "ts-node": "^10.9.2"
+  }
 }
