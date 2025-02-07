@@ -26,45 +26,75 @@ si hay suficientes fondos disponibles.
 
 */
 
-const prompt = require('prompt-sync')();
+import promptSync from 'prompt-sync';
 
-function createAccount(id, holderName, balance=0) {
-    this.id = id;
-    this.holderName = holderName;
-    this.balance = balance;
+const prompt = promptSync();
 
-    this.deposit = (amount) =>{
-      this.balance += amount;
-      console.log(`Depósito exitoso. Nuevo saldo: ${this.balance}`);
-    };
-  
-    this.withdraw = (amount) => {
-      if (amount <= this.balance) {
-        this.balance -= amount;
-        console.log(`Retiro exitoso. Nuevo saldo: ${this.balance}`);
-      } else {
-        console.log("Fondos insuficientes.");
-      }
-    };
-  
-    this.transfer = (toAccount, amount)  =>{
-      if (amount <= this.balance) {
-        this.balance -= amount;
-        toAccount.balance += amount;
-        console.log(`Transferencia exitosa. Nuevo saldo: ${this.balance}`);
-      } else {
-        console.log("Fondos insuficientes.");
-      }
+interface BankAccount {
+    id: string;
+    holderName: string;
+    balance: number;
+    deposit: (amount: number) => void;
+    withdraw: (amount: number) => void;
+    transfer: (toAccount: BankAccount, amount: number) => void;
+}
+
+
+function createAccount(id: string, holderName: string, balance: number = 0): BankAccount {
+    return {
+        id,
+        holderName,
+        balance,
+        
+        deposit(amount: number): void {
+            if (amount <= 0) {
+                console.log("El monto a depositar debe ser mayor a 0.");
+                return;
+            }
+            this.balance += amount;
+            console.log(`Depósito exitoso. Nuevo saldo de ${this.holderName}: ${this.balance}`);
+        },
+
+        withdraw(amount: number): void {
+            if (amount <= 0) {
+                console.log("El monto a retirar debe ser mayor a 0.");
+                return;
+            }
+            if (amount > this.balance) {
+                console.log("Fondos insuficientes.");
+                return;
+            }
+            this.balance -= amount;
+            console.log(`Retiro exitoso. Nuevo saldo de ${this.holderName}: ${this.balance}`);
+        },
+
+        transfer(toAccount: BankAccount, amount: number): void {
+            if (amount <= 0) {
+                console.log("El monto a transferir debe ser mayor a 0.");
+                return;
+            }
+            if (amount > this.balance) {
+                console.log("Fondos insuficientes para la transferencia.");
+                return;
+            }
+            this.balance -= amount;
+            toAccount.balance += amount;
+            console.log(`Transferencia exitosa de ${amount} de ${this.holderName} a ${toAccount.holderName}.`);
+            console.log(`Nuevo saldo de ${this.holderName}: ${this.balance}`);
+            console.log(`Nuevo saldo de ${toAccount.holderName}: ${toAccount.balance}`);
+        }
     };
 }
 
-const cuenta1 = new createAccount("12345", "Juan Pérez", 1000);
-const cuenta2 = new createAccount("67890", "María García", 500);
+// Crear cuentas
+const cuenta1 = createAccount("12345", "Juan Pérez", 1000);
+const cuenta2 = createAccount("67890", "María García", 500);
 
+// Operaciones bancarias
+cuenta1.deposit(500);
+cuenta1.withdraw(200);
+cuenta1.transfer(cuenta2, 300);
 
-cuenta1.deposit(500); // Depositar 500 en cuenta1
-cuenta1.withdraw(200); // Retirar 200 de cuenta1
-cuenta1.transfer(cuenta2, 300); // Transferir 300 de cuenta1 a cuenta2
-
-console.log(cuenta1); // Mostrar el estado de la cuenta1
-console.log(cuenta2); // Mostrar el estado de la cuenta2
+// Mostrar el estado de las cuentas
+console.log(cuenta1);
+console.log(cuenta2);
