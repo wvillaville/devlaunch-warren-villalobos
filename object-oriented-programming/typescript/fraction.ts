@@ -26,57 +26,65 @@ fraction3.add(fraction4)                                                        
 
 */
 
-const prompt = require('prompt-sync')();
+import promptSync from 'prompt-sync';
 
-function createFraction(numerator, denominator) {       
-    this.numerator = numerator;
-    this.denominator = denominator;
+const prompt = promptSync();
 
-    this.add = (fraction) => {
-        const newNumerator = this.numerator * fraction.denominator + fraction.numerator * this.denominator;
-        const newDenominator = this.denominator * fraction.denominator;
-        return { newNumerator, newDenominator };
-    };
-
-    this.subtract = (fraction) => {
-        const newNumerator = this.numerator * fraction.denominator - fraction.numerator * this.denominator;
-        const newDenominator = this.denominator * fraction.denominator;
-        return { newNumerator, newDenominator };
-    };
-
-    this.multiply = (fraction) => {
-        const newNumerator = this.numerator * fraction.numerator;
-        const newDenominator = this.denominator * fraction.denominator;
-        return { newNumerator, newDenominator };
-    };
-
-    this.divide = (fraction) => {
-        const newNumerator = this.numerator * fraction.denominator;
-        const newDenominator = this.denominator * fraction.numerator;
-        return { newNumerator, newDenominator };
-    };
+interface Fraction {
+    numerator: number;
+    denominator: number;
 }
 
-const fraction1 = new createFraction(3, 4);
-const fraction2 = new createFraction(2, 3);
+function createFraction(numerator: number, denominator: number): Fraction {
+    if (denominator === 0) {
+        throw new Error("Denominator cannot be zero.");
+    }
+    return { numerator, denominator };
+}
 
-const result = fraction1.add(fraction2);
-console.log(result);
+function add(f1: Fraction, f2: Fraction): Fraction {
+    return createFraction(
+        f1.numerator * f2.denominator + f2.numerator * f1.denominator,
+        f1.denominator * f2.denominator
+    );
+}
 
-const fraction3 = new createFraction(3, 4);
-const fraction4 = new createFraction(2, 3);
+function subtract(f1: Fraction, f2: Fraction): Fraction {
+    return createFraction(
+        f1.numerator * f2.denominator - f2.numerator * f1.denominator,
+        f1.denominator * f2.denominator
+    );
+}
 
-const result2 = fraction3.subtract(fraction4);
-console.log(result2);
+function multiply(f1: Fraction, f2: Fraction): Fraction {
+    return createFraction(
+        f1.numerator * f2.numerator,
+        f1.denominator * f2.denominator
+    );
+}
 
-const fraction5 = new createFraction(3, 4);
-const fraction6 = new createFraction(2, 3);
+function divide(f1: Fraction, f2: Fraction): Fraction {
+    if (f2.numerator === 0) {
+        throw new Error("Cannot divide by a fraction with a numerator of zero.");
+    }
+    return createFraction(
+        f1.numerator * f2.denominator,
+        f1.denominator * f2.numerator
+    );
+}
 
-const result3 = fraction5.multiply(fraction6);
-console.log(result3);
+// Ejemplos de uso
+const fraction1: Fraction = createFraction(3, 4);
+const fraction2: Fraction = createFraction(2, 3);
 
-const fraction7 = new createFraction(3, 4);
-const fraction8 = new createFraction(2, 3);
+const sum = add(fraction1, fraction2);
+console.log(`Suma: ${sum.numerator}/${sum.denominator}`);
 
-const result4 = fraction7.divide(fraction8);
-console.log(result4);
+const difference = subtract(fraction1, fraction2);
+console.log(`Resta: ${difference.numerator}/${difference.denominator}`);
+
+const product = multiply(fraction1, fraction2);
+console.log(`Multiplicación: ${product.numerator}/${product.denominator}`);
+
+const quotient = divide(fraction1, fraction2);
+console.log(`División: ${quotient.numerator}/${quotient.denominator}`);
