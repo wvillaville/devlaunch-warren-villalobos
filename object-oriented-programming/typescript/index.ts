@@ -18,3 +18,4 @@ const acc2 = createAccount(2, 'Lara Villalobos');
 
 console.log(acc1);
 console.log(acc2);
+
