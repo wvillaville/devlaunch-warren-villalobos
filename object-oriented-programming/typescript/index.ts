@@ -1,25 +1,21 @@
-import PromptSync = require("prompt-sync");
+import PromptSync from "prompt-sync";
 
 const prompt = PromptSync();
 
-class Dog {
-    constructor(public name: string = "", public age: number = 0, public breed: string = "") {
-        this.name = name;
-        this.age = age;
-        this.breed = breed;
-    }
-
-    public bark(): void => {
-        console.log("Woof! Woof!");
-    }
+interface Account {
+    id: number;
+    name: string;
+    balance: number;
 }
 
-const dogName = prompt("Enter dog name: ");
-const dogAge = prompt("Enter dog age: ");
-const dogBreed = prompt("Enter dog breed: ");
+const createAccount = (id: number, name: string, balance: number= 0): Account => {
+    return { id, name, balance };
+}
 
-const dog = new Dog(dogName, parseInt(dogAge), dogBreed);
 
-console.log(`Dog name: ${dog.name}`);
-console.log(`Dog age: ${dog.age}`);
-console.log(`Dog breed: ${dog.breed}`);
+const acc1 = createAccount(1, 'Warren Villalobos', 1000);
+const acc2 = createAccount(2, 'Lara Villalobos');
+
+console.log(acc1);
+console.log(acc2);
+
