@@ -21,4 +21,3 @@ const dog = new Dog(dogName, parseInt(dogAge), dogBreed);
 console.log(`Dog name: ${dog.name}`);
 console.log(`Dog age: ${dog.age}`);
 console.log(`Dog breed: ${dog.breed}`);
-
