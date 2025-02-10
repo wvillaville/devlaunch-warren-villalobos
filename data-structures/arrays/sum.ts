@@ -7,8 +7,7 @@ Esto significa sumar el número en el índice 0 del primer arreglo con el númer
 del segundo arreglo, y así sucesivamente.
 
 Asegúrate de que el programa pueda manejar arreglos de diferentes longitudes y sume los números
-correctamente. Además, incluye manejo de errores para abordar situaciones como arreglos vacíos
-o arreglos con valores no numéricos.
+correctamente. 
 
 Ejemplo:
 [1, 0, 2, 3, 4] + [3, 5, 6, 7, 8, 13, 9] = [4, 5, 8, 10, 12, 13, 9]
